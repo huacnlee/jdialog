@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>jQuery.jDialog demo</title>
+  <link rel="stylesheet" href="jquery.jdialog.css" type="text/css" media="screen" />
+  <style type="text/css" media="screen">
+    * { margin:0; padding:0; }
+    input,button { font-size:12px; }
+    body { background:#DDD; text-align: center; font-size:13px; color:#333; }
+    a { color:#0363D5; }
+    #container { width:800px; margin:20px auto; background:#FFF; border:1px solid #CCC; 
+      padding:10px; text-align: left; }
+    .dialog_content a { margin-right:4px; margin-bottom:8px; }
+    .search_box { font-size:12px; }
+    .search_box label { color:#999; }
+  </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="jquery.jdialog.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function changeLocal(el){
+      $(el).jDialog({
+        title : "快速切换",
+        content : '\
+        <div class="dialog_content">\
+        <a href="http://www.javaeye.com/">JavaEye</a> <a href="http://chinaonrails.com">ChinaonRails</a> \
+        <a href="http://www.rubyonrails.org">Rails 官方</a> <a href="http://ruby-lang.org">Ruby</a>\
+        </div>\
+        ',
+        width : 200
+      });
+      return false;
+    }
+    
+    function showSearchPanel(el){
+      $(el).jDialog({
+        title : "快速切换",
+        content : $("#hide_contexts .search_box").clone().html(),
+        width : 300
+      });
+      return false;
+    }
+  </script>
+</head>
+<body>
+  <div id="hide_contexts" style="display:none">
+    <div class="search_box form">    
+      <p class="row">
+        <label for="search_text">搜索:</label> <select><option value="1">网站</option><option value="2">内容</option></select>
+        <input type="text" name="search[text]" value="" id="search_text" />  <button>搜索</button>    
+      </p>      
+    </div>
+  </div>  
+  <div id="container">
+    <a href="#" onclick="return changeLocal(this);">快速切换</a>
+    <a href="#" onclick="return showSearchPanel(this);">搜索</a>
+  </div>
+</body>
+</html>
