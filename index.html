@@ -51,45 +51,47 @@
   </div>  
   <div id="container">
     <h1>jQuery jDialog plugin</h1>
-    <div id="about" class="box">
-      <h2>About</h2>
-      <p>
-        This is a jQuery UI plugin,You can use simple method to create a popup window.
-      </p>
-      <p>
-        <a href="http://github.com/huacnlee/jdialog">Source code</a>
-      </p>
-    </div>
-    <div id="demo" class="box">
-      <h2>How to use</h2>
-      <p>
-        <pre>
-          <code>
-          function changeLocal(el){
-            $(el).jDialog({
-              title : "Quick choice",
-              content : 'This is dialog content. ',
-              width : 200
-            });
-            return false;
-          }
-          
-          function showSearchPanel(el){
-            $(el).jDialog({
-              title : "Quick choice",
-              content : $("#hide_contexts .search_box").clone().html(),
-              width : 320
-            });
-            return false;
-          }
-          </code>
-        </pre>
-      </p>
-      <h3>Demo</h3>
-      <p>
-      <a href="#" onclick="return changeLocal(this);">Quick choice</a>
-      <a href="#" onclick="return showSearchPanel(this);">Search</a>
-      </p>
+    <div id="main">
+      <div id="about" class="box">
+        <h2>About</h2>
+        <p>
+          This is a jQuery UI plugin,You can use simple method to create a popup window.
+        </p>
+        <p>
+          <a href="http://github.com/huacnlee/jdialog">Source code</a>
+        </p>
+      </div>
+      <div id="demo" class="box">
+        <h2>How to use</h2>
+        <p>
+          <pre>
+            <code>
+            function changeLocal(el){
+              $(el).jDialog({
+                title : "Quick choice",
+                content : 'This is dialog content. ',
+                width : 200
+              });
+              return false;
+            }
+            
+            function showSearchPanel(el){
+              $(el).jDialog({
+                title : "Quick choice",
+                content : $("#hide_contexts .search_box").clone().html(),
+                width : 320
+              });
+              return false;
+            }
+            </code>
+          </pre>
+        </p>
+        <h3>Demo</h3>
+        <p>
+        <a href="#" onclick="return changeLocal(this);">Quick choice</a>
+        <a href="#" onclick="return showSearchPanel(this);">Search</a>
+        </p>
+      </div>
     </div>    
   </div>
 </body>
