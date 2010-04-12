@@ -1,6 +1,12 @@
 /*
  * jDialog v 0.3
- * Jason Lee <huacnlee@gmail.com> Since 2008-03-26
+ * Ytrip Dev Team. Jason Lee 2008-03-26
+ * a dialog like facebook.com
+ * http://www.ytrip.com
+ */
+/**
+ * jDialog - 对话框类
+ * @author Json Lee
  */
 var jDialog = {
 
@@ -41,7 +47,7 @@ var jDialog = {
   show : function(settings){        
     var pos = jDialog.getPos();
     $.extend(jDialog.settings,settings);
-    
+      
     //关闭之前的窗口
     jDialog.close();
     
@@ -85,6 +91,10 @@ var jDialog = {
       dialog.hover(function(){ jDialog.hovered = true; },function(){ jDialog.hovered = false; });
     }
     dialog.show();
+    $(document).mousedown(function(){
+      jDialog.close();
+    });
+    dialog.mousedown(function(){ return false; });
   },
   
   /**
