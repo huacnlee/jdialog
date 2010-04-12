@@ -66,23 +66,23 @@
         <p>
           <pre>
             <code>
-            function changeLocal(el){
-              $(el).jDialog({
-                title : "Quick choice",
-                content : 'This is dialog content. ',
-                width : 200
-              });
-              return false;
-            }
-            
-            function showSearchPanel(el){
-              $(el).jDialog({
-                title : "Quick choice",
-                content : $("#hide_contexts .search_box").clone().html(),
-                width : 320
-              });
-              return false;
-            }
+function changeLocal(el){
+  $(el).jDialog({
+    title : "Quick choice",
+    content : 'This is dialog content. ',
+    width : 200
+  });
+  return false;
+}
+
+function showSearchPanel(el){
+  $(el).jDialog({
+    title : "Quick choice",
+    content : $("#hide_contexts .search_box").clone().html(),
+    width : 320
+  });
+  return false;
+}
             </code>
           </pre>
         </p>
