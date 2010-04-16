@@ -1,5 +1,5 @@
 /*
- * jDialog v 0.3
+ * jDialog v 0.3.1
  * Ytrip Dev Team. Jason Lee 2008-03-26
  * a dialog like facebook.com
  * http://www.ytrip.com
@@ -23,22 +23,26 @@ var jDialog = {
   /**
    * 参数设置
    */
-  settings : {
-      
-      /**
-       * 窗口最外面个框的ID
-       */
-      idName : "paneljDialog",
-      /**
-       * 窗口标题
-       */
-      title : "提示",
-      /**
-       * 提示内容
-       */
-      content : "",
-      
-      width : 250
+  settings : {      
+    /**
+     * 窗口最外面个框的ID
+     */
+    idName : "paneljDialog",
+    /**
+     * 窗口标题
+     */
+    title : "提示",
+    /**
+     * 提示内容
+     */
+    content : "",
+    
+    width : 250,
+    
+    /**
+     * 点击外部的时候是否自动关闭
+     */
+    close_on_body_click : true
   },   
   
   /**
@@ -91,10 +95,15 @@ var jDialog = {
       dialog.hover(function(){ jDialog.hovered = true; },function(){ jDialog.hovered = false; });
     }
     dialog.show();
-    $(document).mousedown(function(){
-      jDialog.close();
-    });
-    dialog.mousedown(function(){ return false; });
+    
+    // auto close when body click
+    if(jDialog.settings.close_on_body_click){
+      $(document).mousedown(function(){
+        jDialog.close();
+      });
+    
+      dialog.mousedown(function(){ return false; });
+    }
   },
   
   /**
