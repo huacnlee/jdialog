@@ -37,6 +37,16 @@
       });
       return false;
     }
+
+    function showOnlyCloseButtonPanel(el){
+      $(el).jDialog({
+        title : "Close only with button",
+        content : 'This window only close with the Clonse button.',
+        width : 320,
+        close_on_body_click : false
+      });
+      return false;
+    }
   </script>
 </head>
 <body>
@@ -83,6 +93,16 @@ function showSearchPanel(el){
   });
   return false;
 }
+
+function showOnlyCloseButtonPanel(el){
+  $(el).jDialog({
+    title : "Close only with button",
+    content : 'This window only close with the Clonse button.',
+    width : 320,
+    close_on_body_click : false
+  });
+  return false;
+}
             </code>
           </pre>
         </p>
@@ -90,6 +110,7 @@ function showSearchPanel(el){
         <p>
         <a href="#" onclick="return changeLocal(this);">Quick choice</a>
         <a href="#" onclick="return showSearchPanel(this);">Search</a>
+        <a href="#" onclick="return showOnlyCloseButtonPanel(this)v;">Other(Only close with close button)</a>
         </p>
       </div>
     </div>    
