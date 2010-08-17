@@ -1,5 +1,5 @@
 /*
- * jDialog v 0.3.2
+ * jDialog v 0.3.3
  * Ytrip Dev Team. Jason Lee 2008-03-26
  * a dialog like facebook.com
  * http://www.ytrip.com
@@ -31,7 +31,7 @@ var jDialog = {
     /**
      * 窗口标题
      */
-    title : "提示",
+    title : "Notice",
     /**
      * 提示内容
      */
@@ -48,9 +48,16 @@ var jDialog = {
   /**
    * 显示jDialog
    */
-  show : function(settings){        
+  show : function(options){        
     var pos = jDialog.getPos();
-    $.extend(jDialog.settings,settings);
+    // 恢复默认的设置，因为多个jDialog窗口的时候会出现冲突（由于使用的静态类）
+    jDialog.settings.close_on_body_click = true;
+    jDialog.settings.width = 250;
+    jDialog.settings.content = "";
+    jDialog.settings.title = "Notice";
+    jDialog.settings.idName = "paneljDialog";
+
+    $.extend(jDialog.settings,options);
       
     //关闭之前的窗口
     jDialog.close();
@@ -97,16 +104,14 @@ var jDialog = {
     dialog.show();
     
     // auto close when body click
-    if(jDialog.settings.close_on_body_click){
-      $(document).mousedown(function(){
-        if(!jDialog.hovered){
-          jDialog.close();
-        }
-      });
-    
-      dialog.mouseover(function(){ jDialog.hovered = true; })
-      dialog.mouseout(function(){ jDialog.hovered = false; })
-    }
+    $(document).mousedown(function(){
+      if(!jDialog.hovered && jDialog.settings.close_on_body_click){
+        jDialog.close();
+      }
+    });
+  
+    dialog.mouseover(function(){ jDialog.hovered = true; })
+    dialog.mouseout(function(){ jDialog.hovered = false; })
   },
   
   /**
@@ -179,4 +184,5 @@ jQuery.fn.jDialog.close = function(){
 jQuery.fn.jDialog.update = function(content){
   jDialog.update(content);
 }
+
 
