@@ -1,5 +1,5 @@
 /*
- * jDialog v 0.3.1
+ * jDialog v 0.3.2
  * Ytrip Dev Team. Jason Lee 2008-03-26
  * a dialog like facebook.com
  * http://www.ytrip.com
@@ -99,10 +99,13 @@ var jDialog = {
     // auto close when body click
     if(jDialog.settings.close_on_body_click){
       $(document).mousedown(function(){
-        jDialog.close();
+        if(!jDialog.hovered){
+          jDialog.close();
+        }
       });
     
-      dialog.mousedown(function(){ return false; });
+      dialog.mouseover(function(){ jDialog.hovered = true; })
+      dialog.mouseout(function(){ jDialog.hovered = false; })
     }
   },
   
@@ -176,3 +179,4 @@ jQuery.fn.jDialog.close = function(){
 jQuery.fn.jDialog.update = function(content){
   jDialog.update(content);
 }
+
