@@ -9,6 +9,8 @@ jDialog is a popup window plugin for jQuery, It simple to use.
       $(el).jDialog({
         title : "Dialog title",
         content : "<p>This is dialog HTML content</p>",
+				title_visible : false,
+				top_offset : -1,
         width : 400
       });
       return false;

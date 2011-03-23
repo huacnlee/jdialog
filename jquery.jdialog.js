@@ -1,5 +1,5 @@
 /*
- * jDialog v 0.3.3
+ * jDialog 
  * Ytrip Dev Team. Jason Lee 2008-03-26
  * a dialog like facebook.com
  * http://www.ytrip.com
@@ -42,7 +42,27 @@ var jDialog = {
     /**
      * 点击外部的时候是否自动关闭
      */
-    close_on_body_click : true
+    close_on_body_click : true,
+   
+    /**
+     * 是否隐藏 title 栏，包括关闭图标
+     */
+    title_visible : true,
+
+    /**
+     * 顶端坐标偏移几个像素,单位 px
+     */
+    top_offset : 1,
+
+    /**
+     * 左边坐标偏移几个像素,单位 px
+     */
+    left_offset : 1,
+
+    /*
+     * 版本号
+     */
+    version : "0.4"
   },   
   
   /**
@@ -67,8 +87,8 @@ var jDialog = {
         
     if(dialog.size() == 0){
       var cssArrow = "contextual_arrow_rev";
-      var posTop =  pos.top + pos.height + 2;
-      var posLeft = pos.left + 1;
+      var posTop =  pos.top + pos.height + jDialog.settings.top_offset;
+      var posLeft = pos.left + jDialog.settings.left_offset;
       var browserHalfSize = jDialog.getBrowserHafeSize();
 
       if(posLeft > browserHalfSize.width){
@@ -84,8 +104,10 @@ var jDialog = {
       html += '       <div class="'+ cssArrow +'"></div>';
       html += '       <div class="contextual_dialog_shadow">'
       html += '           <div class="contextual_dialog_content">';
-      html += '               <h2><span>'+jDialog.settings.title+'</span></h2>';
-      html += '               <div class="jdialog_close" onclick="jDialog.close();" title="关闭"></div>';
+      if(jDialog.settings.title_visible){
+        html += '               <h2><span>'+jDialog.settings.title+'</span></h2>';
+        html += '               <div class="jdialog_close" onclick="jDialog.close();" title="关闭"></div>';
+      }
       html += '               <div class="dialog_content">';
       html += '                   <div class="dialog_body clearfix">';
       html += '                       '+jDialog.settings.content;
@@ -110,8 +132,11 @@ var jDialog = {
       }
     });
   
+    jQuery(jDialog.owner).addClass("active");
     dialog.mouseover(function(){ jDialog.hovered = true; })
     dialog.mouseout(function(){ jDialog.hovered = false; })
+    jQuery(jDialog.owner).mouseover(function(){ jDialog.hovered = true; })
+    jQuery(jDialog.owner).mouseout(function(){ jDialog.hovered = false; })
   },
   
   /**
@@ -126,6 +151,7 @@ var jDialog = {
    */
   close : function(){
     var dialog = $("#"+jDialog.settings.idName);
+    $(jDialog.owner).removeClass("active");
     dialog.hide();
     dialog.remove();
   },
@@ -184,5 +210,4 @@ jQuery.fn.jDialog.close = function(){
 jQuery.fn.jDialog.update = function(content){
   jDialog.update(content);
 }
-
 
