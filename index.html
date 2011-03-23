@@ -28,15 +28,19 @@
         <a href="http://www.rubyonrails.org">Rails 官方</a> <a href="http://ruby-lang.org">Ruby</a>\
         </div>\
         ',
-        width : 200
+        width : 200,
+        left_offset : -4,
+        top_offset : 6,
+        title_visiable : false
       });
       return false;
     }
     
     function showSearchPanel(el){
       $(el).jDialog({
-        title : "快速切换",
+        title : "搜索",
         content : $("#hide_contexts .search_box").clone().html(),
+        close_on_body_click : false,
         width : 300
       });
       return false;

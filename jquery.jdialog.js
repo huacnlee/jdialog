@@ -47,7 +47,7 @@ var jDialog = {
     /**
      * 是否隐藏 title 栏，包括关闭图标
      */
-    title_visible : true,
+    title_visiable : true,
 
     /**
      * 顶端坐标偏移几个像素,单位 px
@@ -62,7 +62,7 @@ var jDialog = {
     /*
      * 版本号
      */
-    version : "0.4"
+    version : "0.4.1"
   },   
   
   /**
@@ -72,6 +72,9 @@ var jDialog = {
     var pos = jDialog.getPos();
     // 恢复默认的设置，因为多个jDialog窗口的时候会出现冲突（由于使用的静态类）
     jDialog.settings.close_on_body_click = true;
+    jDialog.settings.title_visiable = true;
+    jDialog.settings.top_offset = 1;
+    jDialog.settings.left_offset = 1;
     jDialog.settings.width = 250;
     jDialog.settings.content = "";
     jDialog.settings.title = "Notice";
@@ -104,7 +107,7 @@ var jDialog = {
       html += '       <div class="'+ cssArrow +'"></div>';
       html += '       <div class="contextual_dialog_shadow">'
       html += '           <div class="contextual_dialog_content">';
-      if(jDialog.settings.title_visible){
+      if(jDialog.settings.title_visiable){
         html += '               <h2><span>'+jDialog.settings.title+'</span></h2>';
         html += '               <div class="jdialog_close" onclick="jDialog.close();" title="关闭"></div>';
       }
