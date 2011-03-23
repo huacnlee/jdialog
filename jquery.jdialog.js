@@ -202,6 +202,10 @@ var jDialog = {
 };
 
 jQuery.fn.jDialog = function(settings){   
+	if(jDialog.ownder == this[0]){
+		return false;
+	}
+	jDialog.close();
   jDialog.owner = this[0]; 
   jDialog.show(settings);
 }
