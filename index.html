@@ -13,6 +13,11 @@
     .search_box label { color:#999; }
     a.dropdown { padding:4px; border:1px solid #FFF; }
     a.dropdown.active { border:1px solid #aaa; background:#CCC; border-bottom:0px; text-decoration:none; color:#333; }
+    input.text { border:1px solid #AAA; border-color:#999 #DDD #DDD #999; padding:4px; }
+    input.search { width:320px; }
+    ul.complete { margin:-6px -21px; padding:0; }
+    ul.complete li { list-style:none; cursor:pointer; padding:0 4px; line-height:22px; border-bottom:1px solid #ddd; }
+    ul.complete li:hover { background:#eaf3ff; }
   </style>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
   <script src="https://github.com/huacnlee/jdialog/raw/master/jquery.jdialog.js" type="text/javascript"></script>
@@ -56,6 +61,35 @@
       });
       return false;
     }
+
+    var searchList = ["Google","Facebook","Twitter","Quora","FriendFeed","Yahoo","Microsoft","Flickr","Youtube"];
+    function showSearchComplete(el,type){
+      el_width = $(el).width();
+      html = "";
+      if(type == "click" || $(el).val() == ""){
+        html = $(el).attr("placeholder");
+      }
+      else{
+        html += '<ul class="complete" style="padding:0px 15px;">';
+        t = $(el).val().toLowerCase();
+        for(var i=0;i<searchList.length;i++){
+          curr = searchList[i].toLowerCase();
+          if(curr.indexOf(t) >= 0){
+            html += "<li>"+searchList[i]+"</li>";
+          }
+        }
+        html += "</ul>";
+      }
+
+      $(el).jDialog({
+        content : html,
+        width : el_width + 80,
+        title_visiable : false,
+        top_offset : -1,
+        left_offset : 0
+      });
+      return false;
+    }
   </script>
 </head>
 <body>
@@ -81,6 +115,17 @@
         </p>
       </div>
       <div id="demo" class="box">
+        <h2>Demo</h2>
+        <p>
+        <a href="#" class="dropdown" onclick="return changeLocal(this);">Quick choice</a>
+        <a href="#" onclick="return showSearchPanel(this);">Search</a>
+        <a href="#" onclick="return showOnlyCloseButtonPanel(this);">Other(Only close with close button)</a>
+        </p>
+        <h2>Demo - as Autocomplete</h2>
+        <p>
+        <input type="text" class="text search" onkeyup="return showSearchComplete(this,'keyup')"
+          onclick="return showSearchComplete(this,'click')" placeholder="Type company name to search, etc Google, Facebook..." />
+        </p>
         <h2>How to use</h2>
         <p>
           <pre>
@@ -117,12 +162,6 @@ function showOnlyCloseButtonPanel(el){
 }
             </code>
           </pre>
-        </p>
-        <h3>Demo</h3>
-        <p>
-        <a href="#" class="dropdown" onclick="return changeLocal(this);">Quick choice</a>
-        <a href="#" onclick="return showSearchPanel(this);">Search</a>
-        <a href="#" onclick="return showOnlyCloseButtonPanel(this);">Other(Only close with close button)</a>
         </p>
       </div>
     </div>    
